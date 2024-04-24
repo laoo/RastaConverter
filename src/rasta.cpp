@@ -1962,3 +1962,42 @@ double RastaConverter::NormalizeScore(double raw_score)
 }
 
 
+int rastaMain( int argc, char* argv[] )
+{
+	RastaConverter rasta;
+	//////////////////////////////////////////////////////////////////////////
+	FreeImage_Initialise( TRUE );
+
+	create_cycles_table();
+
+	Configuration cfg;
+	cfg.Process( argc, argv );
+
+	if ( cfg.continue_processing )
+	{
+		quiet = true;
+		rasta.Resume();
+		rasta.cfg.continue_processing = true;
+		quiet = false;
+	}
+	else
+		rasta.SetConfig( cfg );
+
+	if ( !rasta.cfg.preprocess_only )
+	{
+	}
+	else
+		quiet = true;
+
+	if ( rasta.ProcessInit() )
+	{
+		rasta.MainLoop();
+		rasta.SaveBestSolution();
+	}
+#ifndef NO_GUI
+	SDL_Quit();
+#endif
+	return 0; // Exit with no errors
+}
+
+

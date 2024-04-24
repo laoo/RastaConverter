@@ -166,3 +166,5 @@ output.png.pmg
 output.png.rp
 output.png.rp.ini
 test.png
+.vs/
+CMakeSettings.json
