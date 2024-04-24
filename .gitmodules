@@ -1,0 +1,3 @@
+[submodule "libextern/FreeImage"]
+	path = libextern/FreeImage
+	url = https://github.com/danoli3/FreeImage

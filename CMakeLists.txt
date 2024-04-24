@@ -4,6 +4,8 @@ project ( RastaConverter )
 
 set( CMAKE_CXX_STANDARD 14 )
 
+add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/libextern/FreeImage )
+
 add_executable( RastaConverter
   src/CommandLineParser.cpp
   src/config.cpp
@@ -21,8 +23,9 @@ add_executable( RastaConverter
 )
 
 target_include_directories( RastaConverter PRIVATE "c:\\local\\SDL2-2.0.22\\include" )
-target_include_directories( RastaConverter PRIVATE ${CMAKE_SOURCE_DIR}/libextern/ )
-target_link_libraries( RastaConverter ${CMAKE_SOURCE_DIR}/libextern/FreeImage.lib c:/local/SDL2-2.0.22/lib/x64/SDL2.lib)
+#target_include_directories( RastaConverter PRIVATE ${CMAKE_SOURCE_DIR}/libextern/ )
+target_link_libraries( RastaConverter PRIVATE FreeImage )
+target_link_libraries( RastaConverter PRIVATE c:/local/SDL2-2.0.22/lib/x64/SDL2.lib)
 
 if (WIN32)
   target_compile_definitions( RastaConverter PRIVATE -D_CRT_SECURE_NO_DEPRECATE )
